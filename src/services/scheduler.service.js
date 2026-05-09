@@ -3,9 +3,11 @@ const cron = require("node-cron")
 const prisma = require("../prisma/client")
 const { enviarNotificacion } = require("./push.service")
 
-const hora = process.env.HORA_RECORDATORIO || 19
-const minuto = process.env.MINUTO_RECORDATORIO || 10
+
 const iniciarScheduler = () => {
+  const hora = process.env.HORA_RECORDATORIO || 19
+  const minuto = process.env.MINUTO_RECORDATORIO || 10
+  console.log(`⏰ Scheduler configurado para las ${hora}:${minuto}`)
   // Corre todos los días a las 19:00 (7 PM)
   // Formato cron: segundo minuto hora día mes díaSemana
   cron.schedule(`0 ${hora} ${minuto}* * *`, async () => {
