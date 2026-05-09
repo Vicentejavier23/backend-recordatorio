@@ -33,7 +33,7 @@ model Suscripcion {
   endpoint  String
   p256dh    String
   auth      String
-  userId    Int
+  userId    Int      @unique
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 }
